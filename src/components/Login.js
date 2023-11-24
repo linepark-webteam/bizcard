@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
-function Signup() {
+function Login() {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
+    email: '', // フィールド名をemailに変更
     password: '',
   });
 
@@ -15,18 +14,13 @@ function Signup() {
 
   const validate = () => {
     let tempErrors = {};
-    if (!formData.username) {
-      tempErrors.username = 'Username is required';
-    }
     if (!formData.email) {
       tempErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      tempErrors.email = 'Email is invalid';
+      tempErrors.email = 'Email is invalid'; // メールアドレスの形式を検証
     }
     if (!formData.password) {
       tempErrors.password = 'Password is required';
-    } else if (formData.password.length < 6) {
-      tempErrors.password = 'Password must be at least 6 characters long';
     }
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
@@ -42,19 +36,8 @@ function Signup() {
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-4">新規会員登録</h2>
+      <h2 className="mb-4">ログイン</h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">ユーザー名:</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            className="form-control"
-          />
-          {errors.username && <div className="text-danger">{errors.username}</div>}
-        </div>
         <div className="mb-3">
           <label className="form-label">メールアドレス:</label>
           <input
@@ -77,10 +60,10 @@ function Signup() {
           />
           {errors.password && <div className="text-danger">{errors.password}</div>}
         </div>
-        <button type="submit" className="btn btn-primary">会員登録</button>
+        <button type="submit" className="btn btn-primary">Login</button>
       </form>
     </div>
   );
 }
 
-export default Signup;
+export default Login;
